@@ -11,11 +11,15 @@
 # **************************************************************************** #
 
 kata = {
-        'Python' : 'Guido van Rossum', 
-        'Ruby' : 'Yukihiro Matsumoto',
-        'PHP': 'Rasmus Lerdorf',
-        }
+    'Python': 'Guido van Rossum',
+    'Ruby': 'Yukihiro Matsumoto',
+    'PHP': 'Rasmus Lerdorf',
+}
+
 if __name__ == "__main__":
+    # Itera sobre las claves del diccionario kata
     for key in kata:
-        print("{} was created by {}".format(key, kata[key]))
+        # Imprime el nombre del lenguaje y su creador
+        print("{} fue creado por {}".format(key, kata[key]))
+
         
