@@ -29,33 +29,38 @@ import argparse
 from PIL import Image, ExifTags
 from PIL.ExifTags import TAGS
 
-
 def arguments():
-
+    """
+    Esta función define y analiza los argumentos de línea de comandos.
+    """
     analizador = argparse.ArgumentParser(
-    description = "Herramienta de scraping de imagenes en un sitio web"
-    )    
-    
-    analizador.add_argument("IMAGEN", help="Imagen a analizar", type = str) 
-    analizador.add_argument("IMAGENES", help= "Imágenes a anlizar ", nargs = "*") 
+        description="Herramienta de scraping de imágenes en un sitio web"
+    )
+
+    analizador.add_argument("IMAGEN", help="Imagen a analizar", type=str)
+    analizador.add_argument("IMAGENES", help="Imágenes a analizar", nargs="*")
     return analizador.parse_args()
 
-
 def meta_data(imagen):
+    """
+    Esta función muestra los metadatos de una imagen.
+    """
     print("Nombre".ljust(29), ":", imagen.filename.split('/'))
-    print("Dimesiones".ljust(29), ":", imagen.size[0], imagen.size[1])
-    print("Formato".ljust(29), ":" , imagen.format )
+    print("Dimensiones".ljust(29), ":", imagen.size[0], imagen.size[1])
+    print("Formato".ljust(29), ":", imagen.format)
     print("Modo".ljust(29), ":", imagen.mode)
     print("Paleta".ljust(29), ":", imagen.palette)
 
-
 def scorpion(rutas):
+    """
+    Esta función analiza las imágenes y muestra sus metadatos.
+    """
     for ruta in rutas:
         try:
             imagen = Image.open(ruta)
         except:
-            print("no se ha podido abrir", ruta)
-        else: 
+            print("No se ha podido abrir", ruta)
+        else:
             datos = imagen.getexif()
             print(ruta.split('/')[-1])
             meta_data(imagen)
@@ -64,12 +69,8 @@ def scorpion(rutas):
             for key, val in datos.items():
                 if key in ExifTags.TAGS:
                     print(f'{ExifTags.TAGS[key]:30}: {val}')
-       
-            
 
-
-if __name__ == "__main__": 
-   
+if __name__ == "__main__":
     args = arguments()
 
     comandos = list()
@@ -77,6 +78,3 @@ if __name__ == "__main__":
     comandos += args.IMAGENES
 
     scorpion(comandos)
-
-
-
