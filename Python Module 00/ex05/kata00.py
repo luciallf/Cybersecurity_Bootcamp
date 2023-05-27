@@ -10,6 +10,8 @@
 #                                                                              #
 # **************************************************************************** #
 
-kata =(9,42,21)
+kata = (9, 42, 21)
+
 if __name__ == "__main__":
-    print("The", len(kata), "numbers are:", ', ' .join(str(x)for x in kata))
+    # Imprime la cantidad de números en la tupla kata
+    print("Los", len(kata), "números son:", ', '.join(str(x) for x in kata))
